@@ -4,6 +4,7 @@ void setup()
 	//your code here
 	  size(500, 500);
 	  background(0,0,0);
+
 }
 
 
@@ -18,7 +19,7 @@ void draw()
 
 
 
-class NormalParticle
+class NormalParticle implements Particle
 {
 	//your code here
 	// NormalParticle class. It will need the following members:
@@ -27,18 +28,39 @@ class NormalParticle
 	double starX;
 	double starY;
 	double starSpeed;
-	double starAngle;
-	color starColor = (int)(Math.random()*255);
+	double starDirection;
+	int starColor; 
+	//= (int)(Math.random()*255);
+
+	//
+	NormalParticle()
+{
+
+	starX= mouseX;
+	starY= mouseY;
+	starDirection= (Math.random()*2)+100);
+	starColor = (int)(Math.random()*255);
 
 
 
 
-	void move()
+
+}
+
+
+	public void move()
 	{
  //Takes the cos of the angle times the speed and adds it to the X coordinate. Does the same to Y with the sin of the angle
+//nX = nX+ Math.cos(nTheta)*nSpeed;
+//nY = nY+ Math.sin(nTheta)*nSpeed;
+
+
+
+
 	}
 
-	void show()
+
+	public void show()
 	{
 
 	}
