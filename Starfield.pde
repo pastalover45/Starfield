@@ -1,9 +1,16 @@
+
+Particle []starfield;
 //your code here
 void setup()
 {
 	//your code here
 	  size(500, 500);
-	  background(0,0,0);
+	  starfield = new Particle[1000];
+	
+	for (int i =0; i<500; i++){
+
+		starfield[i] = new NormalParticleA();
+
 
 }
 
@@ -13,6 +20,9 @@ void setup()
 void draw()
 {
 	//your code here
+	background(0);
+
+
 }
 
 
@@ -25,64 +35,84 @@ class NormalParticle implements Particle
 	// NormalParticle class. It will need the following members:
 //5 member variables: X and Y positions, Color, Angle and Speed. (Hint: use doubles for X, Y, Speed and Angle)
 
+
+
 	double starX;
 	double starY;
 	double starSpeed;
-	double starDirection;
-	int starColor; 
-	//= (int)(Math.random()*255);
+	double starDirection; //double starTheta;
+	//int starColor; 
 
-	//
+	int r; 
+	int b; 
+	int g;
+	int starSize; 
+
+
+
 	NormalParticle()
 {
 
-	starX= mouseX;
-	starY= mouseY;
-	starDirection= (Math.random()*2)+100);
-	starColor = (int)(Math.random()*255);
+//First we choose a random direction: dTheta is a random decimal from 0 to 2*Math.PI
+//Then we choose a random speed: dSpeed is a random decimal between 0 and 10
+//We'll have all the particles start from the same position: dX and dY are initialized to 320 and 240
 
+	starX= 250;
+	starY= 250;
+	starDirection = Math.random()*2*Math.PI;
+	//starDirection= (Math.random()*2)+100;
+	starSpeed =(Math.random()*1)+10;
+	//starColor = (int)(Math.random()*255);
 
+	starSize= (int)((Math.random()*50)+25);
 
-
+	r = (int)(Math.random()*255);
+    b = (int)(Math.random()*255);
+    g = (int)(Math.random()*255);
 
 }
 
 
 	public void move()
-	{
+{
  //Takes the cos of the angle times the speed and adds it to the X coordinate. Does the same to Y with the sin of the angle
-//nX = nX+ Math.cos(nTheta)*nSpeed;
-//nY = nY+ Math.sin(nTheta)*nSpeed;
+ 	starX = starX+ Math.cos(starDirection)*starSpeed;
+ 	starY = starY+ Math.sin(starDirection)*starSpeed;
+
+ 	if (mousePressed){
+		starX = mouseX;
+		starY = mouseY;
+ 	}
 
 
-
-
-	}
+}
 
 
 	public void show()
 	{
 
+	noStroke();
+	fill(r,g,b);
+   ellipse((float)starX,(float)starY, starSize, starSize);
+
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
 }
+
+
 
 interface Particle
 {
-	//your code here
+	public void move();
+	public void show();
 }
+
+
+
+
+
+
+
 class OddballParticle //uses an interface
 {
 	//your code here
