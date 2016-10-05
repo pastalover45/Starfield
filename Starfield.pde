@@ -9,8 +9,9 @@ void setup()
 	
 	for (int i =0; i<500; i++){
 
-		starfield[i] = new NormalParticleA();
+		starfield[i] = new NormalParticle();
 
+	}
 
 }
 
@@ -21,7 +22,10 @@ void draw()
 {
 	//your code here
 	background(0);
-
+	for (int i=0;i<500; i++){
+	starfield[i].show();
+	starfield[i].move();
+	}
 
 }
 
@@ -61,10 +65,15 @@ class NormalParticle implements Particle
 	starY= 250;
 	starDirection = Math.random()*2*Math.PI;
 	//starDirection= (Math.random()*2)+100;
-	starSpeed =(Math.random()*1)+10;
+	starSpeed =(Math.random()*8)+1;
+	//(Math.random()*8)+0.001;
+	//(Math.random()*1)+10;
+
+
+
 	//starColor = (int)(Math.random()*255);
 
-	starSize= (int)((Math.random()*50)+25);
+	starSize= (int)((Math.random()*5)+25);
 
 	r = (int)(Math.random()*255);
     b = (int)(Math.random()*255);
@@ -92,7 +101,7 @@ class NormalParticle implements Particle
 	{
 
 	noStroke();
-	fill(r,g,b);
+	fill(r,g,b.5);
    ellipse((float)starX,(float)starY, starSize, starSize);
 
 	}
