@@ -4,14 +4,15 @@ Particle []starfield;
 void setup()
 {
 	//your code here
-	  size(500, 500);
+	  size(700,750);
 	  starfield = new Particle[1000];
 	
 	for (int i =0; i<500; i++){
 
 		starfield[i] = new NormalParticle();
-
 	}
+
+	starfield[300] = new OddballParticle();
 
 }
 
@@ -21,7 +22,7 @@ void setup()
 void draw()
 {
 	//your code here
-	background(0);
+	 background(2, 13, 32);
 	for (int i=0;i<500; i++){
 	starfield[i].show();
 	starfield[i].move();
@@ -56,11 +57,6 @@ class NormalParticle implements Particle
 
 	NormalParticle()
 {
-
-//First we choose a random direction: dTheta is a random decimal from 0 to 2*Math.PI
-//Then we choose a random speed: dSpeed is a random decimal between 0 and 10
-//We'll have all the particles start from the same position: dX and dY are initialized to 320 and 240
-
 	starX= 250;
 	starY= 250;
 	starDirection = Math.random()*2*Math.PI;
@@ -68,10 +64,6 @@ class NormalParticle implements Particle
 	starSpeed =(Math.random()*8)+1;
 	//(Math.random()*8)+0.001;
 	//(Math.random()*1)+10;
-
-
-
-	//starColor = (int)(Math.random()*255);
 
 	starSize= (int)((Math.random()*5)+25);
 
@@ -83,30 +75,31 @@ class NormalParticle implements Particle
 
 
 	public void move()
-{
+	{
  //Takes the cos of the angle times the speed and adds it to the X coordinate. Does the same to Y with the sin of the angle
- 	starX = starX+ Math.cos(starDirection)*starSpeed;
- 	starY = starY+ Math.sin(starDirection)*starSpeed;
+ 		starX = starX+ Math.cos(starDirection)*starSpeed;
+ 		starY = starY+ Math.sin(starDirection)*starSpeed;
 
  	if (mousePressed){
 		starX = mouseX;
 		starY = mouseY;
  	}
-
-
 }
 
 
 	public void show()
 	{
-
 	noStroke();
-	fill(r,g,b.5);
-   ellipse((float)starX,(float)starY, starSize, starSize);
+	fill(r,g,b);
+   ellipse((float)starX,(float)starY, starSize, 0.5);
 
 	}
 
+
+
+
 }
+
 
 
 
@@ -122,9 +115,55 @@ interface Particle
 
 
 
-class OddballParticle //uses an interface
+class OddballParticle implements Particle //uses an interface
 {
-	//your code here
+	
+	double oddX;
+	double oddY;
+	double oddSpeed;
+	double oddDirection;
+
+	int oddSize;
+	int oddColor;
+
+	OddballParticle(){
+		oddX= 250;
+		oddY= 250;
+		oddDirection = Math.random()*2*Math.PI;
+		oddSpeed =(Math.random()*8)+1;
+		oddSize= 10;
+		oddColor = (int)(Math.random()*255);
+
+	}
+
+
+	public void move(){
+	oddX=oddX+Math.cos(oddDirection)*oddSpeed;
+	oddY=oddY+Math.sin(oddDirection)*oddSpeed;
+
+	if(mousePressed){
+
+			//oddDirection =Math.random()*2*Math.PI;
+			oddX = mouseX;
+			oddY = mouseY;
+		}
+
+}
+
+public void show(){
+
+		fill(255,255,255);
+		noStroke();
+		ellipse((float)oddX,(float)oddY,oddSize,oddSize);
+
+	}
+
+
+
+
+
+
+
 }
 class JumboParticle //uses inheritance
 {
