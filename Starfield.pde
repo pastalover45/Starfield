@@ -129,8 +129,8 @@ class OddballParticle implements Particle //uses an interface
 	OddballParticle(){
 		oddX= 250;
 		oddY= 250;
-		oddDirection = Math.random()*2*Math.PI;
-		oddSpeed =(Math.random()*8)+1;
+		oddDirection =Math.random()*3*Math.PI;
+		oddSpeed =5;
 		oddSize= 10;
 		oddColor = (int)(Math.random()*255);
 
@@ -138,19 +138,19 @@ class OddballParticle implements Particle //uses an interface
 
 
 	public void move(){
-	oddX=oddX+Math.cos(oddDirection)*oddSpeed;
-	oddY=oddY+Math.sin(oddDirection)*oddSpeed;
+	oddX= oddX+Math.cos(oddDirection)*oddSpeed;
+	oddY= oddY+Math.sin(oddDirection)*oddSpeed;
 
 	if(mousePressed){
 
 			//oddDirection =Math.random()*2*Math.PI;
-			oddX = mouseX;
-			oddY = mouseY;
+			oddX = mouseX -45;
+			oddY = mouseY -45;
 		}
 
 }
 
-public void show(){
+		public void show(){
 
 		fill(255,255,255);
 		noStroke();
@@ -160,13 +160,18 @@ public void show(){
 
 
 
-
-
-
-
 }
-class JumboParticle //uses inheritance
+
+
+//uses inheritance
+
+class JumboParticle extends NormalParticle
 {
-	//your code here
-}
+	JumboParticle(){
 
+		// nA=255; //opaqicity 
+		// nG=255; //color
+
+		// nWH =100; // size
+	}
+}
